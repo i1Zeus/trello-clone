@@ -14,6 +14,7 @@ export const Navbar = () => {
         </div>
         <Button
           size="sm"
+          variant="primary"
           className="rounded-sm md:block py-1.5 hidden h-auto px-2"
         >
           Create
