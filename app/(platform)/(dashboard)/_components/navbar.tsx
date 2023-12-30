@@ -19,7 +19,11 @@ export const Navbar = () => {
         >
           Create
         </Button>
-        <Button className="md:hidden block rounded-sm">
+        <Button
+          size="sm"
+          variant="primary"
+          className="md:hidden block rounded-sm"
+        >
           <Plus className="w-4 h-4" />
         </Button>
       </div>
