@@ -2,16 +2,16 @@
 
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
 import Image from "next/image";
-import { FC } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
-import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 export type Organization = {
   id: string;
@@ -21,18 +21,21 @@ export type Organization = {
 };
 
 interface NavItemProps {
-  isActive: boolean;
   isExpanded: boolean;
+  isActive: boolean;
   organization: Organization;
   onExpand: (id: string) => void;
 }
 
-export const NavItem: FC<NavItemProps> = ({
-  isActive,
+export const NavItem = ({
   isExpanded,
+  isActive,
   organization,
   onExpand,
-}) => {
+}: NavItemProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const routes = [
     {
       label: "Boards",
@@ -60,9 +63,6 @@ export const NavItem: FC<NavItemProps> = ({
     router.push(href);
   };
 
-  const router = useRouter();
-  const pathname = usePathname();
-
   return (
     <AccordionItem value={organization.id} className="border-none">
       <AccordionTrigger
@@ -77,7 +77,7 @@ export const NavItem: FC<NavItemProps> = ({
             <Image
               fill
               src={organization.imageUrl}
-              alt={organization.name}
+              alt="Organization"
               className="object-cover rounded-sm"
             />
           </div>
@@ -102,5 +102,16 @@ export const NavItem: FC<NavItemProps> = ({
         ))}
       </AccordionContent>
     </AccordionItem>
+  );
+};
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className="gap-x-2 flex items-center">
+      <div className="shrink-0 relative w-10 h-10">
+        <Skeleton className="absolute w-full h-full" />
+      </div>
+      <Skeleton className="w-full h-10" />
+    </div>
   );
 };
