@@ -6,6 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Board {
+  id    String @id @default(uuid())
+  title String
 }
