@@ -1,9 +1,16 @@
-import { Form } from "./form";
+import { FormInput } from "@/components/form/form-input";
+import { FormSubmit } from "@/components/form/form-submit";
 
 const OrganizationIdPage = () => {
+  const onSubmit = () => {
+    "use server";
+  };
   return (
     <div>
-      <Form />
+      <form action={onSubmit}>
+        <FormInput id="title" label="Board Title" />
+        <FormSubmit>Save</FormSubmit>
+      </form>
     </div>
   );
 };
