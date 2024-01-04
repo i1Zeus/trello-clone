@@ -6,7 +6,7 @@ const OrganizationIdPage = () => {
   return (
     <div className="w-full mb-20">
       <Info />
-      <Separator />
+      <Separator className="my-4" />
       <div className="md:px-4 px-2">
         <BoardList />
       </div>
